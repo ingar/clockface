@@ -1,23 +1,24 @@
 <html>
 <head>
   <script type="text/javascript" src="clockface.js"></script>
-  <title>Clock Widget Test</title>
+  <title>Clock Face Test</title>
 </head>
 <body>
 
 <div id="clock-test"></div>
+<h4 id="time">00:00:00</h4>
 
 <script type="text/javascript" charset="utf-8">
-  var c = new ClockFace({
-    el: document.querySelector('#clock-test'),
-    radius: 400
-  })
-
-  function updateClock() {
-    c.setTime(new Date())
-    setTimeout(updateClock, 50)
-  }
-  updateClock()
+  (function() {
+    var clockInput = new ClockFaceInput({
+      el: document.querySelector('#clock-test'),
+      onClockChange: function(secs) {
+        document.querySelector('#time').textContent = clockInput.toString()
+      },
+      snap: 60 * 5
+    })
+    window.clockInput = clockInput
+  })()
 </script>
 </body>
 </html>
