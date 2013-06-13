@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script type="text/javascript" src="clockface.js"></script>
+  <title>Clock Widget Test</title>
+</head>
+<body>
+
+<div id="clock-test"></div>
+
+<script type="text/javascript" charset="utf-8">
+  var c = new ClockFace({
+    el: document.querySelector('#clock-test'),
+    radius: 400
+  })
+
+  function updateClock() {
+    c.setTime(new Date())
+    setTimeout(updateClock, 50)
+  }
+  updateClock()
+</script>
+</body>
+</html>
