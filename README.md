@@ -20,4 +20,4 @@ var clockInput = new clockface.ClockFaceInput({
 ```
 
 ## example
-An [example](http://ingar.github.io/clockface/) of using the library as a standalone clock face renderer, and as an input.
+An [example](http://ingar.github.io/clockface.js) of using the library as a standalone clock face renderer, and as an input.
