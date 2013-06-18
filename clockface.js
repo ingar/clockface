@@ -1,3 +1,7 @@
+// clockface.js 0.0.1
+// (c) 2013 Ingar Shu
+// Released under the MIT license.
+
 (function() {
 
   function SBBCanvasRenderer(opts) {
