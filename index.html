@@ -1,44 +1,84 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Clockface by ingar</title>
+<head>
+  <script type="text/javascript" src="clockface.js"></script>
+  <link rel="stylesheet" href="normalize.css"/>
+  <title>clockface</title>
+  <style type="text/css">
+    section {
+      padding: 20px;
+    }
+    section div {
+      padding: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      display: inline-block;
+    }
+    pre {
+      font-size: 80%;
+    }
+  </style>
+</head>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Clockface</h1>
-        <p>HTML Canvas Clock Face Input</p>
+<body>
 
-        <p class="view"><a href="https://github.com/ingar/clockface">View the Project on GitHub <small>ingar/clockface</small></a></p>
+<a href="https://github.com/ingar/clockface"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
+<section>
+  <h4>Clock face input (click)</h4>
+  <pre>
+var clockInput = new clockface.ClockFaceInput({
+  el: '#clock-input-example',
+  onClockChange: function(clockTime) {
+    document.querySelector('#input-time').textContent = clockInput.toString()
+  },
+  snap: 60 * 5
+})
 
-        <ul>
-          <li><a href="https://github.com/ingar/clockface/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ingar/clockface/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ingar/clockface">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="clockfacejs" class="anchor" href="#clockfacejs"><span class="octicon octicon-link"></span></a>clockface.js</h1>
+<strong id="input-time">00:00:00</strong>
+  </pre>
 
-<p>Canvas-based clock face renderer and input widget.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/ingar">ingar</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+  <div class="example" id="clock-input-example"></div>
+
+  <script type="text/javascript" charset="utf-8">
+var clockInput = new clockface.ClockFaceInput({
+  el: '#clock-input-example',
+  onClockChange: function(clockTime) {
+    document.querySelector('#input-time').textContent = clockInput.toString()
+  },
+  snap: 60 * 5
+})
+  </script>
+</section>
+
+<section>
+  <h4>Standalone clock face renderer</h4>
+  <pre>
+var clockRenderer = new clockface.SBBCanvasRenderer({
+  el: '#clock-renderer-example',
+  secondHand: true
+})
+function setClockTime() {
+  var now = new Date()
+  clockRenderer.setTime(now.getHours(), now.getMinutes(), now.getSeconds())
+  setTimeout(setClockTime, 500)
+}
+setClockTime()
+  </pre>
+
+  <div id="clock-renderer-example"></div>
+
+  <script type="text/javascript" charset="utf-8">
+var clockRenderer = new clockface.SBBCanvasRenderer({
+  el: '#clock-renderer-example',
+  secondHand: true
+})
+function setClockTime() {
+  var now = new Date()
+  clockRenderer.setTime(now.getHours(), now.getMinutes(), now.getSeconds())
+  setTimeout(setClockTime, 500)
+}
+setClockTime()
+  </script>
+</section>
+
+</body>
 </html>
