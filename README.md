@@ -1,6 +1,7 @@
 ## clockface.js
 
 Canvas-based clock face input for time of day.
+*Modern browsers ONLY*, as canvas and the selectors API are used.
 
 ## quick start
 
