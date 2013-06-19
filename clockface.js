@@ -1,5 +1,6 @@
 // clockface.js 0.0.1
 // (c) 2013 Ingar Shu
+// https://github.com/ingar/clockface.js
 // Released under the MIT license.
 
 (function() {
