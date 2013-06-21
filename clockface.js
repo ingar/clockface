@@ -21,36 +21,43 @@
     function renderMarks() {
       for (var i = 0; i < 12; i++) {
         ctx.save()
-          ctx.strokeStyle = 'black'
-          ctx.lineWidth = radius * 0.1
-          ctx.translate(radius, radius)
-          ctx.save()
-            ctx.rotate(2*Math.PI * (i / 12))
-            ctx.beginPath()
-            ctx.moveTo(0, radius * 0.75)
-            ctx.lineTo(0, radius)
-            ctx.stroke()
-          ctx.restore()
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = radius * 0.1
+        ctx.translate(radius, radius)
+        ctx.save()
+        ctx.rotate(2*Math.PI * (i / 12))
+        ctx.beginPath()
+        ctx.moveTo(0, radius * 0.70)
+        ctx.lineTo(0, radius * 0.95)
+        ctx.stroke()
+        ctx.restore()
         ctx.restore()
       }
     }
 
     function renderHand(length, width, theta, color) {
       ctx.save()
-        ctx.translate(radius, radius)
-        ctx.rotate(theta)
-        ctx.strokeStyle = color
-        ctx.lineWidth = width
-        ctx.beginPath()
-        ctx.moveTo(0, radius * 0.2)
-        ctx.lineTo(0, -length)
-        ctx.stroke()
+      ctx.translate(radius, radius)
+      ctx.rotate(theta)
+      ctx.strokeStyle = color
+      ctx.lineWidth = width
+      ctx.beginPath()
+      ctx.moveTo(0, radius * 0.2)
+      ctx.lineTo(0, -length)
+      ctx.stroke()
       ctx.restore()
+    }
+
+    function renderFace() {
+      ctx.fillStyle = 'white'
+      ctx.arc(radius, radius, radius, 0, 2*Math.PI, true)
+      ctx.fill()
     }
 
     function _render(seconds) {
       canvas.width = diameter
       canvas.height = diameter
+      renderFace()
       renderMarks()
       renderHand(radius * 0.5, radius * 0.1, handAngle(seconds, 12*3600), 'black')
       renderHand(radius * 0.95, radius * 0.075, handAngle(seconds, 3600), 'black')
@@ -83,7 +90,6 @@
       '-webkit-user-select: none;'
     ].join(''))
 
-    var onClockChange = opts.onClockChange
     var settingHandPosition = false
     var clockTime = {
       secondsSinceMidnight: 0,
@@ -91,6 +97,12 @@
       minutes: 0,
       seconds: 0
     }
+
+    if (opts.initialTime) {
+      setClock(opts.initialTime)
+    }
+
+    var onClockChange = opts.onClockChange
 
     function setClock(ssm) {
       if (opts.snap) {
@@ -154,6 +166,7 @@
     }
 
     return {
+      setSecondsSinceMidnight: setClock,
       toString: _toString,
       time: clockTime
     }
