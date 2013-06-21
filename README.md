@@ -13,7 +13,6 @@ var clockInput = new clockface.ClockFaceInput({
     console.log(clockTime.hours)
     console.log(clockTime.minutes)
     console.log(clockTime.seconds)
-    }
   },
   snap: 60 * 5
 })
